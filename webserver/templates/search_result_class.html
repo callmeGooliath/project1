@@ -1,0 +1,151 @@
+<html>
+  <style>
+    body{ 
+      font-size: 15pt;
+      font-family: arial;
+    }
+  </style>
+
+  <body>
+  	<!-- if indicator == 1 -->
+  	{% if hc %}
+  	<h1>Search Result Of...</h1>
+    <h2>{{s_input}}</h2>
+  	
+	    <p><b>{{s_input}}</b> is a course under the department of <b>{{ci[1]}}</b>. {% if ht %}<b>{{ti[4]}}</b> is the professor of this course.{% endif %}</p>
+	    <p> {% if htx %}<b><i>{{txi[1]}}</i></b> is used as textbook of this course.{% endif %} {% if hcr %}Classroom is located in <b>{{cri[0]}}</b>.{% endif %} <p>
+
+	    {% if ht %}
+	    <p>About {{ti[4]}}:
+	    	<table>
+	    		<tr> <td>--Date of Birth:</td> <td>{{ti[5]}}</td> </tr>
+	    		<tr> <td>--Blood Status:</td> <td>{{ti[6]}}</td> </tr>
+	    		<tr> <td>--Gender:</td> <td>{{ti[7]}}</td> </tr>
+	    	</table>
+	    </p>
+	    {% endif %}
+
+	    {% if hs %}
+	    <p>Students who took the course:
+	    	<table>
+	    		{% for row in si %}
+	    		<tr><td>--{{row[4]}}</td></tr>
+	    		{% endfor %}
+	    	</table>
+	    </p>	
+	    {% endif %}
+
+	    {% if htx %}
+	    <p>About {{txi[1]}}:
+	    	<table>
+	    		<tr><td>--ISBN:</td> <td>{{txi[0]}}</td> </tr>
+	    		<tr><td>--Author:</td> <td>{{txi[2]}}</td> </tr>
+	    	</table>
+
+	    </p>
+	    {% endif %}
+
+	    {% if hcr %}
+	    <p>About {{cri[0]}}:
+		    <table>
+	          <tr> <td>-- Street Number: </td> <td>{{cri[1]}}</td> </tr>
+	          <tr> <td>-- Street Name: </td> <td>{{cri[2]}}</td> </tr>
+	          <tr> <td>-- Zip Code: </td> <td>{{cri[3]}}</td> </tr>
+	          <tr> <td>-- City: </td> <td>{{cri[4]}}</td> </tr>
+	          <tr> <td>-- Country: </td> <td>{{cri[5]}}</td> </tr>
+	        </table>
+	    </p>
+	    {% endif %}
+
+
+
+
+	    <!-- basic information -->
+	    {% if hc %}
+	    <p>Basic Information:</p>
+	    <table>
+	    	<tr>
+	    		{% for n in ci %}
+	    			<td>{{n}}</td>
+	    		{% endfor %}
+	    	</tr>
+	    </table>
+	    {% endif %}
+
+	    <!-- teacher information -->
+	    {% if ht %}
+	    <p>Teacher Information:</p>
+	    <table>
+	    	<tr>
+	    		{% for n in ti %}
+	    			<td>{{n}}</td>
+	    		{% endfor %}
+	    	</tr>
+	    </table>
+	    {% endif %}
+
+	    <!-- student information -->
+	    {% if hs %}
+	    <p>Student Information:</p>
+	    <table>
+	    	<tr>
+	    		{% for n in si %}
+	    			<td>{{n}}</td>
+	    		{% endfor %}
+	    	</tr>
+	    </table>
+	    {% endif %}
+
+
+	    <!-- textbook information -->
+	    {% if htx %}
+	    <p>Textbook Information:</p>
+	    <table>
+	    	<tr>
+	    		{% for n in txi %}
+	    			<td>{{n}}</td>
+	    		{% endfor %}
+	    	</tr>
+	    </table>
+	    {% endif %}
+
+	    <!-- classroom information -->
+	    {% if hcr %}
+	    <p>Classroom Information:</p>
+	    <table>
+	    	<tr>
+	    		{% for n in cri %}
+	    			<td>{{n}}</td>
+	    		{% endfor %}
+	    	</tr>
+	    </table>
+	    {% endif %}
+
+
+
+    {% else %}
+    	<h1>Sorry... No Information Found</h1>
+  	{% endif %}
+
+	<!-- Search Part -->
+	<!-- <p>Choose a type and search!</p> -->
+	<form method="POST" action="/search">
+	  <p> 
+	    <select name="search_type">
+	      <option value=1>Character</option>
+	      <option value=2>Class</option>
+	      <option value=3>House</option>
+	      <option value=4>Textbook</option>
+	      <option value=5>Location</option>
+	    </select>
+	    <input type="text" name="name"> <input type="submit" value="Search!"> 
+	  </p>
+	</form>
+
+	<p><a href="/insert">Populate some data!</a></p>
+	<p><a href="/delete">Delete some data!</a></p>
+
+	</body>
+
+
+</html>
