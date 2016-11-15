@@ -39,8 +39,7 @@ app = Flask(__name__, template_folder=tmpl_dir)
 #
 # Swap out the URI below with the URI for the database created in part 2
 DATABASEURI = "sqlite:///test.db"
-#DATABASEURI = "postgresql://pg2539:45nbd@104.196.175.120/postgres"  #klb2180:6h42a pg2539:45nbd
-#login to google console command line: psql -U <your uni> postgres -h 104.196.175.120
+
 
 #
 # This line creates a database engine that knows how to connect to the URI above
@@ -129,7 +128,6 @@ def index():
   """
 
   # DEBUG: this is debugging code to see what request looks like
-  print 'This is request args:'
   print request.args
 
 
@@ -138,14 +136,9 @@ def index():
   #
   cursor = g.conn.execute("SELECT name FROM test")
   names = []
-  print '\n'
   for result in cursor:
     names.append(result['name'])  # can also be accessed using result[0]
-    print result
-    print result['name']
   cursor.close()
-  print '\n'
-  print names
 
   #
   # Flask uses Jinja templates, which is an extension to HTML where you can
@@ -174,12 +167,6 @@ def index():
   #     {% endfor %}
   #
   context = dict(data = names)
-  print 'This is context:'
-  print context
-  print '\n'
-  #in the code above, only one element in the dictionary.
-  #data is the newly created key, and list "names" is its corresponding value
-  #--Peng
 
 
   #
@@ -205,9 +192,7 @@ def another():
 @app.route('/add', methods=['POST'])
 def add():
   name = request.form['name']
-  print name
-  cmd = 'INSERT INTO test(name) VALUES (:name1), (:name2)';
-  g.conn.execute(text(cmd), name1 = name, name2 = name);
+  g.conn.execute('INSERT INTO test VALUES (NULL, ?)', name)
   return redirect('/')
 
 

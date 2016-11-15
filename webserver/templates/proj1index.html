@@ -1,141 +1,190 @@
 <html>
-
-
-
   <style>
-
-
-
     body{ 
-
-
-
       font-size: 15pt;
-
-
-
       font-family: arial;
-
-
-
     }
-
-
-
   </style>
-
-
-
 <body>
-
   <h1>Harry Potter Database</h1>
 
+  <br>
+  <p><b>{{dlt_msg}}</b></p>
+  <p><b>{{ist_msg}}</b></p>
+  <h2>Searching for Records</h2>
 <p>Choose a type and search!</p>
-
 <form method="POST" action="/search"> 
-
   <p> 
-
     <select name="search_type">
-
       <option value=1>Character</option>
-
       <option value=2>Class</option>
-
       <option value=3>House</option>
-
       <option value=4>Textbook</option>
-
       <option value=5>Location</option>
-
     </select>
-
     <input type="text" name="name"> <input type="submit" value="Search!"> 
-
   </p>
-
 </form>
 
-
-
-<!-- <p>Delete a Character</p>
-
+<h2>Deleting Records</h2>
+<fieldset>
+<p>Delete a Character</p>
 <p> Enter Character ID to delete</p>
-
 <form method="POST" action="/deleteCharacter"> 
-
   <p> 
-
     <input type="text" name="uid"> 
+    <input type="submit" value="Delete"> 
+  </p>
+</form>
+</fieldset>
+
+<fieldset>
+<p>Delete a Member of Faculty</p>
+<p> Enter Character ID to delete</p>
+<form method="POST" action="/deleteFaculty"> 
+  <p> 
+    <input type="text" name="uid"> 
+    <input type="submit" value="Delete"> 
+  </p>
+</form>
+</fieldset>
+
+<fieldset>
+<p>Delete a Student</p>
+<p> Enter Character ID to delete</p>
+<form method="POST" action="/deleteStudent"> 
+  <p> 
+    <input type="text" name="uid"> 
+    <input type="submit" value="Delete"> 
+  </p>
+</form>
+</fieldset>
+
+<fieldset>
+<p>Delete a Textbook</p>
+<p> Enter an ISBN to delete</p>
+<form method="POST" action="/deleteTextbook"> 
+  <p> 
+    <input type="text" name="isbn"> 
+    <input type="submit" value="Delete"> 
+  </p>
+</form>
+</fieldset>
+
+ <fieldset>
+<p>Delete a Class</p>
+<p> Enter a class name to delete</p>
+<form method="POST" action="/deleteClass"> 
+  <p> 
+    <input type="text" name="name"> 
+    <input type="submit" value="Delete"> 
+  </p>
+</form>
+</fieldset>
+
+
+ <fieldset>
+<p>Delete a Place</p>
+<p> Enter a Place name to delete</p>
+<form method="POST" action="/deletePlace"> 
+  <p> 
+    <input type="text" name="name"> 
+    <input type="submit" value="Delete"> 
+  </p>
+</form>
+</fieldset>
+
+<fieldset>
+<p>Delete a Player</p>
+
+<form method="POST" action="/deletePlayer"> 
+  <p> 
+    <p> Date Started</p>
+    <input type="date" name="h_from"> 
+    <p>House Name </p>
+    <input type="text" name="house_name"> 
+    <p>Player's UID</p>
+    <input type="text" name="player_uid"> 
 
     <input type="submit" value="Delete"> 
-
   </p>
-
 </form>
+</fieldset>
+
+<fieldset>
+    <p>Delete Faculty Class Assignment</p>
+
+<form method="POST" action="/deleteTeach"> 
+  <p> 
+    <p> Faculty UID</p>
+    <input type="text" name="faculty_uid"> 
+    <p>Class Name </p>
+    <input type="text" name="class_name"> 
+    <input type="submit" value="Delete"> 
+  </p>
+</form>
+</fieldset>
+
+<fieldset>
+  <p>Unenroll from a Class</p>
+<form method="POST" action="/deleteTake"> 
+  <p> 
+    <p> Student UID</p>
+    <input type="text" name="student_uid"> 
+    <p>Class Name </p>
+    <input type="text" name="class_name"> 
+    <input type="submit" value="Delete"> 
+  </p>
+</form>
+</fieldset>
+
+<fieldset>
+  <p>Delete a Deed</p>
+<form method="POST" action="/deleteUse"> 
+  <p> 
+    <p> Place Name</p>
+    <input type="text" name="place_name"> 
+    <p>User UID</p>
+    <input type="text" name="user_uid"> 
+    <input type="submit" value="Delete"> 
+  </p>
+</form>
+</fieldset>
 
 
-
+<br>
+<h2>Inserting Records </h2>
 <div id="content">
-
   <fieldset>
-
     <p><b>Insert a Character</b></p>
-
                 <form method="post" action="/addCharacter">
-
                   <label id='uid'>User Id (must be four digits)</label>
-
                   <input type="text" name="uid" /><br />
-
                   <label id='name'>Name:</label>
-
                   <input type="text" name="name" /><br />
-
                   <label id='dob'>Date of Birth</label>
-
                   <input type='date'name="dob" /><br />
-
                   <label id='blood_type'>Blood type (must be muggle born, pure blood, or half blood)</label>
-
                   <input type="text" name="blood_type" /><br />
-
                   <label id='gender'> Gender (must be male or female)</label>
-
                   <input type="text" name="gender" /><br />
-
                   <input type="submit" />
-
                 </form>
-
   </fieldset>
-
 
 
 <fieldset>
-
     <p><b>Insert a Member of Faculty</b></p>
-
                 <form method="post" action="/addFaculty">
-
                   <label id='uid'>User Id (must be four digits)</label>
-
                   <input type="text" name="uid" /><br />
-
                   <label id='date_join_hog'>Date of Joining Hogwarts</label>
-
                   <input type="date" name="date_join_hog" /><br />
-
                    <label id='head_of'>Head of House</label>
-
                   <input type='text'name="head_of" /><br />                 
-
                   <input type="submit" />
-
                 </form>
-
   </fieldset>
-
 
 
 <fieldset>
@@ -149,7 +198,6 @@
                   <input type="text" name="uid" /><br />
 
                   <label id='date_join_hog'>Date of Joining Hogwarts</label>
-
                   <input type="date" name="date_join_hog" /><br />
 
                   <label id='pet'>Pet</label>
@@ -413,19 +461,8 @@
                 </form>
 
   </fieldset>
-
-
-
-</div>  --> 
-
-<p><a href="/insert">Populate some data!</a></p>
-<p><a href="/delete">Delete some data!</a></p>
-
-
-
+</div>  
 </body>
-
-
 
 </html>
 
